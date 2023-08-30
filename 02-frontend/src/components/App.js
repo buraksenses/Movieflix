@@ -11,6 +11,7 @@ import { MovieList } from "./MovieList";
 import { SelectedMovie } from "./SelectedMovie";
 import { WatchedMovieList } from "./WatchedMovieList";
 import { MovieSummary } from "./MovieSummary";
+import { apiClient } from "./Service/MovieService";
 
 const tempMovieData = [
   {
@@ -84,6 +85,16 @@ export default function App() {
   function handleDeleteWatchedMovie(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
+
+  useEffect(function () {
+    async function getMovies() {
+      apiClient.get("/watchedMovies").then((response) => {
+        console.log(response.data);
+        setWatched(response.data._embedded.watchedMovies);
+      });
+    }
+    getMovies();
+  });
 
   useEffect(
     function () {

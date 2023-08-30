@@ -13,7 +13,7 @@ public class WatchedMovie {
 
     @Id
     @Column(name = "imdb_id")
-    private String id;
+    private String imdbId;
 
     @Column(name = "title")
     private String title;

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Loader } from "./Loader";
 import { KEY } from "./App";
 import RatingStars from "./Utils/RatingStars";
+import { apiClient } from "./Service/MovieService";
 
 export function SelectedMovie({
   selectedId,
@@ -19,6 +20,20 @@ export function SelectedMovie({
     (movie) => movie.imdbID === selectedId
   )?.userRating;
 
+  function saveWatched(movie) {
+    apiClient
+      .post(`/watchedMovies`, {
+        imdbId: movie.imdbID,
+        title: movie.title,
+        year: movie.year,
+        poster: movie.poster,
+        runtime: movie.runtime,
+        imdbRating: movie.imdbRating,
+        userRating: movie.userRating,
+      })
+      .catch((error) => console.error(error));
+  }
+
   function handleAddWatched() {
     const newWatchedMovie = {
       imdbID: selectedId,
@@ -31,6 +46,7 @@ export function SelectedMovie({
     };
     onAddWatched(newWatchedMovie);
     onClearMovie();
+    saveWatched(newWatchedMovie);
   }
 
   const {

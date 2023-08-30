@@ -18,7 +18,7 @@ public class DataRestConfig implements RepositoryRestConfigurer {
 
         cors.addMapping("/**")
                 .allowedOrigins("http://localhost:3000") // İzin verilen etki alanını burada belirtin
-                .allowedMethods("POST","DELETE") // İzin verilen HTTP metotları
+                .allowedMethods("POST","DELETE","GET") // İzin verilen HTTP metotları
                 .allowedHeaders("DNT", "X-CustomHeader", "Keep-Alive", "User-Agent", "X-Requested-With", "If-Modified-Since", "Cache-Control", "Content-Type", "Content-Range", "Range") // İzin verilen başlıklar
                 .exposedHeaders("DNT", "X-CustomHeader", "Keep-Alive", "User-Agent", "X-Requested-With", "If-Modified-Since", "Cache-Control", "Content-Type", "Content-Range", "Range") // Erişilebilir başlıklar
                 .allowCredentials(true) // Kimlik bilgilerini gönderip göndermeyeceğini belirtin

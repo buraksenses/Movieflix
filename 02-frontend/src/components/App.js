@@ -83,18 +83,20 @@ export default function App() {
   }
 
   function handleDeleteWatchedMovie(id) {
-    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+    setWatched((watched) => watched.filter((movie) => movie.imdbId !== id));
+    apiClient
+      .delete(`/watchedMovies/${id}`)
+      .catch((error) => console.error(error));
   }
-
   useEffect(function () {
     async function getMovies() {
-      apiClient.get("/watchedMovies").then((response) => {
+      await apiClient.get("/watchedMovies").then((response) => {
         console.log(response.data);
         setWatched(response.data._embedded.watchedMovies);
       });
     }
     getMovies();
-  });
+  }, []);
 
   useEffect(
     function () {

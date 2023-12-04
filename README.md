@@ -4,7 +4,7 @@
 Movieflix is a web application designed to be able to search and rate films.
 
 ## Features
-- A simple film searching React project.
+- A simple film searching React&Spring Boot project.
 - OMDB API is used in the project for films data.
 - Comprehensive movie database with rich details and descriptions.
 - User-friendly interface for easy navigation and movie exploration.
